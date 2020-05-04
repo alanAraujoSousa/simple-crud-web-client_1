@@ -27,6 +27,7 @@ function get(id) {
 function create(pessoa) {
     const requestOptions = {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' }, 
         body: JSON.stringify(pessoa)
     };
 
@@ -36,6 +37,7 @@ function create(pessoa) {
 function update(id, pessoa) {
     const requestOptions = {
         method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pessoa)
     };
 

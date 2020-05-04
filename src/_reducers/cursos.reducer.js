@@ -13,7 +13,8 @@ export function cursos(state = initialCursoState, action) {
     case cursoConstants.CREATE_SUCCESS:
         return {
           ...state,
-          items: [...state.items, action.curso]
+          items: [...state.items, action.curso],
+          creating: false
         };
     case cursoConstants.CREATE_FAILURE:
         return {};
@@ -56,20 +57,20 @@ export function cursos(state = initialCursoState, action) {
       return {
         ...state,
         items: state.items.map(curso =>
-          curso.id === action.id
+          curso._id === action.id
             ? { ...curso, deleting: true }
             : curso
         )
       };
     case cursoConstants.DELETE_SUCCESS:
       return {
-        items: state.items.filter(curso => curso.id !== action.id)
+        items: state.items.filter(curso => curso._id !== action.id)
       };
     case cursoConstants.DELETE_FAILURE:
       return {
         ...state,
         items: state.items.map(curso => {
-          if (curso.id === action.id) {
+          if (curso._id === action.id) {
             const { deleting, ...cursoCopy } = curso;
             return { ...cursoCopy, deleteError: action.error };
           }

@@ -13,7 +13,8 @@ export function pessoas(state = initialPessoaState, action) {
     case pessoaConstants.CREATE_SUCCESS:
         return {
           ...state,
-          items: [...state.items, action.pessoa]
+          items: [...state.items, action.pessoa],
+          creating: false
         };
     case pessoaConstants.CREATE_FAILURE:
         return {};
@@ -56,20 +57,20 @@ export function pessoas(state = initialPessoaState, action) {
       return {
         ...state,
         items: state.items.map(pessoa =>
-          pessoa.id === action.id
+          pessoa._id === action.id
             ? { ...pessoa, deleting: true }
             : pessoa
         )
       };
     case pessoaConstants.DELETE_SUCCESS:
       return {
-        items: state.items.filter(pessoa => pessoa.id !== action.id)
+        items: state.items.filter(pessoa => pessoa._id !== action.id)
       };
     case pessoaConstants.DELETE_FAILURE:
       return {
         ...state,
         items: state.items.map(pessoa => {
-          if (pessoa.id === action.id) {
+          if (pessoa._id === action.id) {
             const { deleting, ...pessoaCopy } = pessoa;
             return { ...pessoaCopy, deleteError: action.error };
           }

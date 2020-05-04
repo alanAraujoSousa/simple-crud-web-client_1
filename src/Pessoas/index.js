@@ -1,1 +1,1 @@
-export * from './Pessoas'
+export * from './CreatePessoas'

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
-import { Pessoas } from '../Pessoas';
-import { Cursos } from '../Cursos';
+import { CreatePessoas } from '../Pessoas';
+import { CreateCursos } from '../Cursos';
 import { Home } from '../Home';
 
 function App() {
@@ -28,8 +28,8 @@ function App() {
             <Router history={history}>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/pessoas" component={Pessoas} />
-                    <Route path="/cursos" component={Cursos} />
+                    <Route path="/pessoas" component={CreatePessoas} />
+                    <Route path="/cursos" component={CreateCursos} />
                     <Redirect from="*" to="/" />
                 </Switch>
             </Router>

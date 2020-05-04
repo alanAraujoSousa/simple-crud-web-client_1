@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { cursoActions } from '../_actions';
 
-function Cursos() {
+function CreateCursos() {
 
     const [curso, setCurso] = useState({
-        id: '',
+        _id: '',
         nome: '',
     });
     const [submitted, setSubmitted] = useState(false);
@@ -25,7 +25,7 @@ function Cursos() {
         e.preventDefault();
 
         setSubmitted(true);
-        if (cursp.nome && curso.id) {
+        if (curso.nome && curso._id) {
             dispatch(cursoActions.create(curso));
         }
     }
@@ -34,36 +34,35 @@ function Cursos() {
         <div>
             <form name="form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Matricula</label>
-                    <input type="text" name="id" value={id} onChange={handleChange} 
-                        className={"form-control" + (submitted && !id ? 'is-invalid': '')} />
+                    <label>Matricula*</label>
+                    <input type="number" name="_id" value={curso._id} onChange={handleChange} 
+                        className={"form-control" + (submitted && !curso._id ? 'is-invalid': '')} />
 
-                    {submitted && !id &&
+                    {submitted && !curso._id &&
                         <div className="invalid-feedback">The matricula is required</div>
                     }
                 </div>
                 
                 <div className="form-group">
-                    <label>Nome</label>
-                    <input type="text" name="nome" value={nome} onChange={handleChange} 
-                        className={"form-control" + (submitted && !nome ? 'is-invalid': '')} />
+                    <label>Nome*</label>
+                    <input type="text" name="nome" value={curso.nome} onChange={handleChange} 
+                        className={"form-control" + (submitted && !curso.nome ? 'is-invalid': '')} />
 
-                    {submitted && !nome &&
+                    {submitted && !curso.nome &&
                         <div className="invalid-feedback">The nome is required</div>
                     }
                 </div>
                 
                 <div className="form-group">
-                    <button disabled={ !pessoa.nome || !pessoa.id || creating} className="btn btn-primary">
-                        {creating 
-                            ? <span className="spinner-border spinner-border-sm mr-1"></span> + Creating
-                            : Create
-                        }
+                    <button disabled={ !curso.nome || !curso._id} className="btn btn-primary">
+                        {creating && <span className="spinner-border spinner-border-sm mr-1"></span>}                        
+                        Create
                     </button>
+                    <Link to="/home" className="btn btn-link">Cancel</Link>
                 </div>
             </form>
         </div>
     );
 }
 
-export { Cursos };
+export { CreateCursos };

@@ -1,5 +1,5 @@
-import { pessoaConstants } from "./_constants";
-import { pessoaService } from "./_services";
+import { pessoaConstants } from "../_constants";
+import { pessoaService } from "../_services";
 import { alertActions } from "./";
 
 export const pessoaActions = {

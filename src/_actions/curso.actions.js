@@ -1,5 +1,5 @@
-import { cursoConstants } from "./_constants";
-import { cursoService } from "./_services";
+import { cursoConstants } from "../_constants";
+import { cursoService } from "../_services";
 import { alertActions } from "./";
 
 export const cursoActions = {
