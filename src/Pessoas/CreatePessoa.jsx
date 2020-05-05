@@ -51,7 +51,6 @@ function CreatePessoa() {
         setSubmitted(true);
         if (pessoa.nome && pessoa.cpf) {
             dispatch(pessoaActions.create(pessoa));
-
         }
     }
 

@@ -30,10 +30,10 @@ function ListPessoas() {
                 <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Nome</th>
+                            <th scope="col"style={{width: '40%'}}>Nome</th>
                             <th scope="col">CPF</th>
                             <th scope="col">Telefone</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col" style={{width: '15%'}}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

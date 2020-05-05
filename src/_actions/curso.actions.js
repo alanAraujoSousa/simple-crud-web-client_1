@@ -19,6 +19,7 @@ function create(curso) {
                 curso => {
                     dispatch(success(curso));
                     dispatch(alertActions.success("You have succesfuly created a curso"));
+                    
                 },
                 error => {
                     dispatch(failure(error.toString()));

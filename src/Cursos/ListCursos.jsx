@@ -26,9 +26,9 @@ function ListCursos() {
                 <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Matricula</th>
+                            <th scope="col"style={{width: '20%'}}>Matricula</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col" style={{width: '15%'}}>Actions</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -35,7 +35,7 @@ function CreateCurso() {
             <form name="form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Matricula*</label>
-                    <input type="number" name="_id" value={curso._id} onChange={handleChange} 
+                    <input type="number" placeholder="Only numbers" name="_id" value={curso._id} onChange={handleChange} 
                         className={"form-control" + (submitted && !curso._id ? 'is-invalid': '')} />
 
                     {submitted && !curso._id &&
