@@ -17,7 +17,9 @@ export function pessoas(state = initialPessoaState, action) {
           creating: false
         };
     case pessoaConstants.CREATE_FAILURE:
-        return {};
+        return { 
+          ...state, creating: false 
+        };
     case pessoaConstants.LIST_REQUEST:
       return {
         loading: true

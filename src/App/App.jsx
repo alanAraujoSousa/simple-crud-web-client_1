@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../_helpers';
 import { alertActions } from '../_actions';
 import { CreatePessoas } from '../Pessoas';
+import { ListPessoas } from '../Pessoas';
 import { CreateCursos } from '../Cursos';
+import { ListCursos } from '../Cursos';
 import { Home } from '../Home';
 
 function App() {
@@ -28,8 +30,11 @@ function App() {
             <Router history={history}>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/pessoas" component={CreatePessoas} />
-                    <Route path="/cursos" component={CreateCursos} />
+                    <Route path="/pessoas" component={ListPessoas} />
+                    <Route path="/create-pessoas" component={CreatePessoas} />
+                    {/* <Route path="/pessoas/:id/edit" component={EditPessoas} /> */}
+                    <Route path="/cursos" component={ListCursos} />
+                    <Route path="/create-cursos" component={CreateCursos} />
                     <Redirect from="*" to="/" />
                 </Switch>
             </Router>

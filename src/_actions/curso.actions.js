@@ -36,7 +36,7 @@ function list() {
     return dispatch => {
         dispatch(request());
 
-        cursoService.getAll()
+        cursoService.list()
             .then(
                 cursos => dispatch(success(cursos)),
                 error => dispatch(failure(error.toString()))

@@ -42,9 +42,7 @@ function CreatePessoas() {
     }
 
     function handleSelectChange(cursosSelected) {
-        debugger
         setPessoa(pessoa => ({ ...pessoa, cursos: cursosSelected.map(c => c.value)}));
-        debugger
     }
 
     function handleSubmit(e) {

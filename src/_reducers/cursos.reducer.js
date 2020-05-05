@@ -17,7 +17,9 @@ export function cursos(state = initialCursoState, action) {
           creating: false
         };
     case cursoConstants.CREATE_FAILURE:
-        return {};
+        return {
+          ...state, creating: false
+        };
     case cursoConstants.LIST_REQUEST:
       return {
         loading: true

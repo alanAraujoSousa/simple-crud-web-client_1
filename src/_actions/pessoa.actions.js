@@ -36,16 +36,16 @@ function list() {
     return dispatch => {
         dispatch(request());
 
-        pessoaService.getAll()
+        pessoaService.list()
             .then(
                 pessoas => dispatch(success(pessoas)),
                 error => dispatch(failure(error.toString()))
             );
     };
 
-    function request() { return { type: pessoaConstants.GETALL_REQUEST } }
-    function success(pessoas) { return { type: pessoaConstants.GETALL_SUCCESS, pessoas } }
-    function failure(error) { return { type: pessoaConstants.GETALL_FAILURE, error } }
+    function request() { return { type: pessoaConstants.LIST_REQUEST } }
+    function success(pessoas) { return { type: pessoaConstants.LIST_SUCCESS, pessoas } }
+    function failure(error) { return { type: pessoaConstants.LIST_FAILURE, error } }
 }
 
 function get(id) {
@@ -89,8 +89,12 @@ function _delete(id) {
 
         pessoaService.delete(id)
             .then(
-                pessoa => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
+                () => { 
+                    dispatch(success(id));
+                },
+                error => { 
+                    dispatch(failure(id, error.toString())) 
+                }
             );
     };
 
