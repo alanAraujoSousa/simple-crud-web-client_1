@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { pessoaActions } from '../_actions';
 import { Link } from 'react-router-dom';
+import { history } from '../_helpers';
 
 function ListPessoas() {
 
@@ -15,7 +16,7 @@ function ListPessoas() {
     }, []);
     
     function handleEdit(pessoa) {
-        debugger
+        history.push(`/edit-pessoa?id=${pessoa._id}`);
     }
 
     function handleDelete(pessoa) {

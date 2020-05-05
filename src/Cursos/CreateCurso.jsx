@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { cursoActions } from '../_actions';
 
-function CreateCursos() {
+function CreateCurso() {
 
     const [curso, setCurso] = useState({
         _id: '',
@@ -65,4 +65,4 @@ function CreateCursos() {
     );
 }
 
-export { CreateCursos };
+export { CreateCurso };

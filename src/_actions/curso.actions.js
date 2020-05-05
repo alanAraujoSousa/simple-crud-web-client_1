@@ -89,8 +89,14 @@ function _delete(id) {
 
         cursoService.delete(id)
             .then(
-                curso => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
+                curso => {
+                    dispatch(success(id));
+                    dispatch(alertActions.success("You have succesfuly deleted a curso"));
+                },
+                error => {
+                    dispatch(failure(id, error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
             );
     };
 

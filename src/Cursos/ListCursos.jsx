@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cursoActions } from '../_actions';
+import { CreateCursos } from './CreateCurso';
 import { Link } from 'react-router-dom';
 
 function ListCursos() {
@@ -13,10 +14,6 @@ function ListCursos() {
     useEffect(() => { 
         dispatch(cursoActions.list());
     }, []);
-    
-    function handleEdit(curso) {
-        debugger
-    }
 
     function handleDelete(curso) {
         dispatch(cursoActions.delete(curso._id));
@@ -41,7 +38,6 @@ function ListCursos() {
                             <td>{curso._id}</td>
                             <td>{curso.nome}</td>
                             <td>
-                                <button className="btn btn-info mr-1" onClick={() => handleEdit(curso)}>Edit</button>
                                 <button className="btn btn-danger" onClick={() => handleDelete(curso)}>Delete</button>
                             </td>
                         </tr>

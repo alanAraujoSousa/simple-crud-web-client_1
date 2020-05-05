@@ -71,10 +71,13 @@ function update(id, pessoa) {
         pessoaService.update(id, pessoa)
             .then(
                 pessoaR => { 
-                    dispatch(alertActions.success("You have succesfuly updatedd a Pessoa"));
+                    dispatch(alertActions.success("You have succesfuly updated a Pessoa"));
                     dispatch(success(pessoa));
                 },
-                error => dispatch(failure(id, error.toString()))
+                error => { 
+                    dispatch(failure(id, error.toString()));
+                    dispatch(alertActions.error(error.toString()));
+                }
             );
     }
 
@@ -91,9 +94,11 @@ function _delete(id) {
             .then(
                 () => { 
                     dispatch(success(id));
+                    dispatch(alertActions.success("You have succesfuly deleted a Pessoa"));
                 },
                 error => { 
-                    dispatch(failure(id, error.toString())) 
+                    dispatch(failure(id, error.toString())) ;
+                    dispatch(alertActions.error(error.toString()));
                 }
             );
     };

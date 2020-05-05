@@ -51,10 +51,13 @@ export function pessoas(state = initialPessoaState, action) {
     case pessoaConstants.UPDATE_SUCCESS:
         return {
           ...state,
-          items: [action.pessoa]
+          items: [action.pessoa],
+          updating: false
         };
     case pessoaConstants.UPDATE_FAILURE:
-        return {};
+        return {
+          ...state, creating: false 
+        };
     case pessoaConstants.DELETE_REQUEST:
       return {
         ...state,

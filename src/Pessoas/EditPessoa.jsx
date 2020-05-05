@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import InputMask from 'react-input-mask';
 import Select from 'react-select';
 import { cursoService } from '../_services';
+import { pessoaService } from '../_services';
 import { pessoaActions } from '../_actions';
 import { cursoActions } from '../_actions';
 
-function CreatePessoas() {
+
+function EditPessoa() {
 
     const [pessoa, setPessoa] = useState({
         nome: '',
@@ -17,20 +19,31 @@ function CreatePessoas() {
     });
     const [submitted, setSubmitted] = useState(false);
     const [cursos, setCursos] = useState([]);
+    const [preSelectedCursos, setPreSelectedCursos] = useState([]);
 
-    const creating = useSelector(state => state.pessoas.creating);
+    const editing = useSelector(state => state.pessoas.editing);
     
     const dispatch = useDispatch();
     
     useEffect(() => {
+    
         cursoService.list()
         .then(
             data => { 
-                    let cursos = [];
-                    data.map(d => {
-                        cursos.push({label: d.nome, value: d._id});
-                    });
-                    setCursos(cursos);
+                    setCursos(data.map(d => {
+                        return {label: d.nome, value: d._id};
+                    }));
+
+                    pessoaService.get(location.search.substr(4))
+                    .then(
+                        data => {
+                            setPessoa(data);
+                            setPreSelectedCursos(data.cursos.map(c => { 
+                                return {label: c.nome, value: c._id} 
+                            }));
+                        },
+                        error => {}
+                    );
                 },
                 error => {}
             );
@@ -42,6 +55,7 @@ function CreatePessoas() {
     }
 
     function handleSelectChange(cursosSelected) {
+        setPreSelectedCursos(cursosSelected);
         setPessoa(pessoa => ({ ...pessoa, cursos: cursosSelected.map(c => c.value)}));
     }
 
@@ -49,8 +63,8 @@ function CreatePessoas() {
         e.preventDefault();
 
         setSubmitted(true);
-        if (pessoa.nome && pessoa.cpf && pessoa.telefone) {
-            dispatch(pessoaActions.create(pessoa));
+        if (pessoa.nome && pessoa.cpf) {
+            dispatch(pessoaActions.update(pessoa._id, pessoa));
         }
     }
 
@@ -85,20 +99,20 @@ function CreatePessoas() {
                 <div className="form-group">
                     <label>Cursos</label>
                     <Select closeMenuOnSelect={false} className="basic-multi-select" isMulti options={cursos} 
-                        onChange={handleSelectChange} />
+                        onChange={handleSelectChange} value={preSelectedCursos}/>
                 </div>
                 }
 
                 <div className="form-group">
                     <button disabled={ !pessoa.nome || !pessoa.cpf } className="btn btn-primary">
-                        {creating && <span className="spinner-border spinner-border-sm mr-1"></span>}                        
-                            Create
+                        {editing && <span className="spinner-border spinner-border-sm mr-1"></span>}                        
+                            Update
                     </button>
-                    <Link to="/home" className="btn btn-link">Cancel</Link>
+                    <Link to="/home" className="btn btn-link">Return</Link>
                 </div>
             </form>
         </div>
     );
 }
 
-export { CreatePessoas };
+export { EditPessoa };
